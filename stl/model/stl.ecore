@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="stl" nsURI="http://www.example.org/stl" nsPrefix="stl">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Item">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="exactItem"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="exactItem" value="self.machine -> select(s | s.cost) -> size() = 1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rawshelf" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tobufferconveyor" upperBound="-1"
+        eType="#//Conveyor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" upperBound="-1"
+        eType="#//Outputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buffer" upperBound="-1"
+        eType="#//Buffer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Machine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" upperBound="-1"
+        eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" upperBound="-1"
+        eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toshelfstoreconveyor" eType="#//Conveyor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" upperBound="-1"
+        eType="#//Services"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Conveyor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="#//Outputslot"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Buffer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="#//Outputslot"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Turntables">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputslot" eType="#//Outputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sawingmachine" eType="#//Machine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Productstore">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputslot" lowerBound="1"
+        eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selfstore" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Wastestore">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" lowerBound="1" eType="#//Inputslot"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="woodwastestore" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sawingmachine" eType="#//Machine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Services">
+    <eOperations name="execute">
+      <eParameters name="parameter1" eType="#//Services"/>
+      <eParameters name="parameter2" eType="#//Services"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingtime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inputslot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Outputslot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
